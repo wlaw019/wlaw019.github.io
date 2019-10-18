@@ -19,14 +19,19 @@ $(() => {
           console.log(x);
           let splitGenre = data.Genre.split(",")[0];
           const $genre = $("<h3>").addClass("genre").text(splitGenre).appendTo($(x));
-          const $title = $("<h4>").addClass("title").text(data.Title).appendTo($(x));
+
+          const $questionDiv = $("<div>").addClass("questionDiv").appendTo($(x));
+          const $title = $("<h4>").addClass("title").text(data.Title).appendTo($questionDiv);
+          const $question = $("<p>").addClass("question").text("Year").appendTo($questionDiv);
+          const $button1 = $("<button>").addClass("rightAns").text(data.Year).appendTo($questionDiv);
+          $questionDiv.hide();
+
+          $(x).on("click",() => {
+            $genre.hide();
+            $questionDiv.toggle();
+          })
+
           
-          // const $row = $("<div>").addClass("row").appendTo($container);
-          //
-          //
-          // const $complaint = $("<h2>").text(data[i].complaint_type).appendTo($row);
-          // const $police = $("<button>").addClass("police").text("WHAT DID THE POLICE DO?").appendTo($row);
-          // const $resolution = $("<p>").text(data[i].resolution_description).appendTo($container).hide();
           //
           // $police.on("click",(event) => {
           //   $(event.target).parent().siblings().toggle();
