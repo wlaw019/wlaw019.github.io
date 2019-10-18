@@ -1,10 +1,10 @@
 const movie = ["The Avengers","Back to the Future","Batman","Batman V Superman: Dawn of Justice","Beverly Hills Cop","The Blair Witch Project","The Bourne Identity","The Bourne Ultimatum","The Breakfast Club","Captain America: Civil War","Casino Royale","Cast Away","Crocodile Dundee","The Dark Knight"];
 
-let currentGrid
+
 
 $(() => {
 
-  const getData = (movieTitle, gridId) => {
+  const getData = (movieTitle, gridId, callback) => {
     // let userInput = $('input[type="text"]').val();
 
     $.ajax({
@@ -36,8 +36,9 @@ $(() => {
             $(x).empty().text("O").addClass("O");
           })
 
-
-          //
+          // getDataBtn function to generate wrongAns
+          callback(movie[2],gridId);
+          
           // $police.on("click",(event) => {
           //   $(event.target).parent().siblings().toggle();
           // })
@@ -55,7 +56,6 @@ $(() => {
 // getDataBtn function
 /////////////////////////////////////////////
 const getDataBtn = (movieTitle, gridId) => {
-  // let userInput = $('input[type="text"]').val();
 
   $.ajax({
     url:'http://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
@@ -71,15 +71,8 @@ const getDataBtn = (movieTitle, gridId) => {
 
         // click on wrong ans to empty everything in grid then display "X"
         $button2.on("click", () => {
-          $(x).empty().text("X").addClass("X");
+          $(y).empty().text("X").addClass("X");
         })
-
-
-        //
-        // $police.on("click",(event) => {
-        //   $(event.target).parent().siblings().toggle();
-        // })
-
 
     },
     ()=>{
@@ -88,9 +81,6 @@ const getDataBtn = (movieTitle, gridId) => {
   );
 
 }
-
-
-
 
 /////////////////////////////////////////////
 // generateGrid function
@@ -102,8 +92,12 @@ const generateGrid = () => {
   		$('.container').append($div);
 
       let movieIndex = Math.floor(Math.random()*movie.length);
-      getData(movie[movieIndex],i);
-      getDataBtn(movie[2],i);
+      getData(movie[movieIndex],i, getDataBtn);
+      // getDataBtn(movie[2],i);
+
+      // e.preventDefault();
+    // $.when(getData(movie[movieIndex],i)).then(getDataBtn(movie[2],i));
+
 
 
 
