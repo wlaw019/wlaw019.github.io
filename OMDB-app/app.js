@@ -7,8 +7,6 @@ $(() => {
   const getData = (movieTitle, gridId) => {
     // let userInput = $('input[type="text"]').val();
 
-
-
     $.ajax({
       url:'http://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
     }).then(
@@ -23,15 +21,22 @@ $(() => {
           const $questionDiv = $("<div>").addClass("questionDiv").appendTo($(x));
           const $title = $("<h4>").addClass("title").text(data.Title).appendTo($questionDiv);
           const $question = $("<p>").addClass("question").text("Year").appendTo($questionDiv);
-          const $button1 = $("<button>").addClass("rightAns").text(data.Year).appendTo($questionDiv);
+          const $ans = $("<div>").addClass("ans").appendTo($questionDiv);
+          const $button1 = $("<button>").addClass("rightAns").text(data.Year).appendTo($ans);
           $questionDiv.hide();
 
+          // click on genre to display question
           $(x).on("click",() => {
             $genre.hide();
             $questionDiv.toggle();
           })
 
-          
+          // click on right ans to empty everything in grid then display "O"
+          $button1.on("click", () => {
+            $(x).empty().text("O").addClass("O");
+          })
+
+
           //
           // $police.on("click",(event) => {
           //   $(event.target).parent().siblings().toggle();
@@ -46,6 +51,50 @@ $(() => {
 
   }
 
+/////////////////////////////////////////////
+// getDataBtn function
+/////////////////////////////////////////////
+const getDataBtn = (movieTitle, gridId) => {
+  // let userInput = $('input[type="text"]').val();
+
+  $.ajax({
+    url:'http://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
+  }).then(
+    (data)=>{
+
+        let x = "#"+gridId;
+        let $ans = $(x).children().eq(1).children().eq(2);
+        console.log($ans);
+        const $button2 = $("<button>").addClass("wrongAns").text(data.Year).appendTo($ans);
+
+
+
+        // click on wrong ans to empty everything in grid then display "X"
+        $button2.on("click", () => {
+          $(x).empty().text("X").addClass("X");
+        })
+
+
+        //
+        // $police.on("click",(event) => {
+        //   $(event.target).parent().siblings().toggle();
+        // })
+
+
+    },
+    ()=>{
+      console.log('bad');
+    }
+  );
+
+}
+
+
+
+
+/////////////////////////////////////////////
+// generateGrid function
+/////////////////////////////////////////////
 const generateGrid = () => {
   for (let i = 1; i <= 9; i++) {
   		let $div = $('<div>');
@@ -54,6 +103,9 @@ const generateGrid = () => {
 
       let movieIndex = Math.floor(Math.random()*movie.length);
       getData(movie[movieIndex],i);
+      getDataBtn(movie[2],i);
+
+
 
 
     }

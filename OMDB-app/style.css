@@ -18,6 +18,10 @@
   flex-wrap: wrap;
 }
 
+.O{
+  font-size: 80px;
+}
+
 @media (min-width:650px) {
   .container{
     width: 600px;
