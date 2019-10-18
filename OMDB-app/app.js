@@ -4,6 +4,9 @@ const movie = ["The Avengers","Back to the Future","Batman","Batman V Superman: 
 
 $(() => {
 
+/////////////////////////////////////////////
+// getData function: populate grids with info and rightAns button
+/////////////////////////////////////////////
   const getData = (movieTitle, gridId, callback) => {
     // let userInput = $('input[type="text"]').val();
 
@@ -26,7 +29,7 @@ $(() => {
           $questionDiv.hide();
 
           // click on genre to display question
-          $(x).on("click",() => {
+          $genre.on("click",() => {
             $genre.hide();
             $questionDiv.toggle();
           })
@@ -37,8 +40,11 @@ $(() => {
           })
 
           // getDataBtn function to generate wrongAns
-          callback(movie[2],gridId);
-          
+          let movieIndexWrong1 = Math.floor(Math.random()*movie.length);
+          let movieIndexWrong2 = Math.floor(Math.random()*movie.length);
+          callback(movie[movieIndexWrong1],gridId);
+          callback(movie[movieIndexWrong2],gridId);
+
           // $police.on("click",(event) => {
           //   $(event.target).parent().siblings().toggle();
           // })
@@ -53,7 +59,7 @@ $(() => {
   }
 
 /////////////////////////////////////////////
-// getDataBtn function
+// getDataBtn function: callback function in getData to generate wrongAns button
 /////////////////////////////////////////////
 const getDataBtn = (movieTitle, gridId) => {
 
@@ -71,7 +77,7 @@ const getDataBtn = (movieTitle, gridId) => {
 
         // click on wrong ans to empty everything in grid then display "X"
         $button2.on("click", () => {
-          $(y).empty().text("X").addClass("X");
+          $(x).empty().text("X").addClass("X");
         })
 
     },
