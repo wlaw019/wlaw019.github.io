@@ -37,7 +37,8 @@ $(() => {
 
           // click on right ans to empty everything in grid then display "O"
           $button1.on("click", () => {
-            $(x).empty().text("O").addClass("O");
+            // $(x).empty().text("O").addClass("O");
+            $(x).empty().html('&#10004;').addClass("O");
           })
 
           // getDataBtn1 function to generate first wrongAns
