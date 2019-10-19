@@ -41,20 +41,8 @@ $(() => {
           $button1.on("click", () => {
             // $(x).empty().text("O").addClass("O");
             $(x).empty().html('&#10004;').addClass("O");
-
-              checkWin("O");
-
-              if (playerWin==="yes") {
-                // No more clicks can occur on board
-                $(".genre").off("click");
-
-              } else {
-                //Check all grids are occupied
-                if ($(".grid").text().length===9) {
-                  alert("No one won!")
-                }
-              }
-
+            checkWin("O");
+            freezeBoard(playerWin);
           })
 
           // getDataBtn1 function to generate first wrongAns
@@ -90,18 +78,8 @@ const getDataBtn1 = (movieTitle,category, gridId) => {
         // click on wrong ans to empty everything in grid then display "X"
         $button2.on("click", () => {
           $(x).empty().text("X").addClass("X");
-            checkWin("X");
-
-            if (playerWin==="yes") {
-              // No more clicks can occur on board
-              $(".genre").off("click");
-            } else {
-              //Check all grids are occupied
-              if ($(".grid").text().length===9) {
-                alert("No one won!")
-              }
-            }
-
+          checkWin("X");
+          freezeBoard(playerWin);
         })
 
         // getDataBtn2 function to generate second wrongAns
@@ -137,18 +115,8 @@ const getDataBtn2 = (movieTitle,category, gridId) => {
         // click on wrong ans to empty everything in grid then display "X"
         $button2.on("click", () => {
           $(x).empty().text("X").addClass("X");
-            checkWin("X");
-
-            if (playerWin==="yes") {
-              // No more clicks can occur on board
-              $(".genre").off("click");
-            } else {
-              //Check all grids are occupied
-              if ($(".grid").text().length===9) {
-                alert("No one won!")
-              }
-            }
-
+          checkWin("X");
+          freezeBoard(playerWin);
         })
 
         // shuffle buttons
@@ -194,6 +162,20 @@ const checkWin = (symbol) => {
       playerWin = "yes";
       alert(symbol +" player won!");
     }
+}
+/////////////////////////////////////////////
+// freezeBoard function: No more clicks can occur on board after win, check No one won scenario
+/////////////////////////////////////////////
+const freezeBoard = (playerWin) => {
+  if (playerWin==="yes") {
+    // No more clicks can occur on board
+    $(".genre").off("click");
+  } else {
+    //Check all grids are occupied
+    if ($(".grid").text().length===9) {
+      alert("No one won!")
+    }
+  }
 }
 
 /////////////////////////////////////////////
