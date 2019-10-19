@@ -11,7 +11,7 @@ $(() => {
     // let userInput = $('input[type="text"]').val();
 
     $.ajax({
-      url:'http://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
+      url:'https://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
     }).then(
       (data)=>{
 
@@ -57,7 +57,7 @@ $(() => {
 const getDataBtn1 = (movieTitle,category, gridId) => {
 
   $.ajax({
-    url:'http://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
+    url:'https://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
   }).then(
     (data)=>{
 
@@ -92,7 +92,7 @@ const getDataBtn1 = (movieTitle,category, gridId) => {
 const getDataBtn2 = (movieTitle,category, gridId) => {
 
   $.ajax({
-    url:'http://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
+    url:'https://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
   }).then(
     (data)=>{
 
