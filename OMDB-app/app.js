@@ -36,7 +36,7 @@ $(() => {
           const $button1 = $("<button>").addClass("rightAns").text(data[category]).appendTo($ans);
           $questionDiv.hide();
 
-          // click on genre to display question, freeze Genre is clickNum is odd number
+          // click on genre to display question, freeze Genre with clickNum to ensure only one Genre can be revealed at a time
           $genre.on("click",() => {
             if (clickNum%2!==0) {
               $genre.hide();
@@ -176,7 +176,12 @@ const checkWin = (symbol) => {
     (($("#3").attr("class")===classCheck)&&($("#5").attr("class")===classCheck)&&($("#7").attr("class")===classCheck))
   ) {
       playerWin = "yes";
-      alert(symbol +" player won!");
+      if (symbol==="O") {
+        alert("You won!")
+      } else if (true) {
+        alert("You lost!");
+      }
+
     }
 }
 /////////////////////////////////////////////
