@@ -22,6 +22,14 @@
   font-size: 80px;
 }
 
+.rightAns{
+  background-color: lightblue;
+}
+
+#grid1 button{
+  background-color: red;
+}
+
 @media (min-width:650px) {
   .container{
     width: 600px;

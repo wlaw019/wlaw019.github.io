@@ -7,7 +7,7 @@ $(() => {
 /////////////////////////////////////////////
 // getData function: populate grids with info and rightAns button
 /////////////////////////////////////////////
-  const getData = (movieTitle, gridId, callback) => {
+  const getData = (movieTitle, gridId) => {
     // let userInput = $('input[type="text"]').val();
 
     $.ajax({
@@ -39,18 +39,10 @@ $(() => {
             $(x).empty().text("O").addClass("O");
           })
 
-          // getDataBtn function to generate wrongAns
+          // getDataBtn1 function to generate first wrongAns
           let movieIndexWrong1 = Math.floor(Math.random()*movie.length);
-          let movieIndexWrong2 = Math.floor(Math.random()*movie.length);
-          callback(movie[movieIndexWrong1],gridId);
-          callback(movie[movieIndexWrong2],gridId);
-
-          // $police.on("click",(event) => {
-          //   $(event.target).parent().siblings().toggle();
-          // })
-
-
-      },
+          getDataBtn1(movie[movieIndexWrong1],gridId);
+        },
       ()=>{
         console.log('bad');
       }
@@ -59,9 +51,9 @@ $(() => {
   }
 
 /////////////////////////////////////////////
-// getDataBtn function: callback function in getData to generate wrongAns button
+// getDataBtn1 function: callback function in getData to generate first wrongAns button
 /////////////////////////////////////////////
-const getDataBtn = (movieTitle, gridId) => {
+const getDataBtn1 = (movieTitle, gridId) => {
 
   $.ajax({
     url:'http://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
@@ -70,21 +62,66 @@ const getDataBtn = (movieTitle, gridId) => {
 
         let x = "#"+gridId;
         let $ans = $(x).children().eq(1).children().eq(2);
-        console.log($ans);
+        // console.log($ans);
         const $button2 = $("<button>").addClass("wrongAns").text(data.Year).appendTo($ans);
-
-
 
         // click on wrong ans to empty everything in grid then display "X"
         $button2.on("click", () => {
           $(x).empty().text("X").addClass("X");
         })
 
+        // getDataBtn2 function to generate second wrongAns
+        let movieIndexWrong2 = Math.floor(Math.random()*movie.length);
+        getDataBtn2(movie[movieIndexWrong2],gridId);
     },
     ()=>{
       console.log('bad');
     }
   );
+
+}
+
+/////////////////////////////////////////////
+// getDataBtn2 function: callback function in getDataBtn1 to generate second wrongAns button and shuffle buttons
+/////////////////////////////////////////////
+const getDataBtn2 = (movieTitle, gridId) => {
+
+  $.ajax({
+    url:'http://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
+  }).then(
+    (data)=>{
+
+        let x = "#"+gridId;
+        let $ans = $(x).children().eq(1).children().eq(2);
+        // console.log($ans);
+        const $button2 = $("<button>").addClass("wrongAns").text(data.Year).appendTo($ans);
+
+        // click on wrong ans to empty everything in grid then display "X"
+        $button2.on("click", () => {
+          $(x).empty().text("X").addClass("X");
+        })
+
+        // shuffle buttons
+        shuffleBtn(gridId);
+    },
+    ()=>{
+      console.log('bad');
+    }
+  );
+
+}
+
+/////////////////////////////////////////////
+// shuffleBtn function
+/////////////////////////////////////////////
+const shuffleBtn = (gridId) => {
+
+  let x = "#"+gridId;
+  let $ans = $(x).children().eq(1).children().eq(2);
+
+  for (let k = $ans.children().length; k >= 0; k--) {
+    $ans.append($ans.children().eq(Math.floor(Math.random() * k)));
+  }
 
 }
 
@@ -98,31 +135,12 @@ const generateGrid = () => {
   		$('.container').append($div);
 
       let movieIndex = Math.floor(Math.random()*movie.length);
-      getData(movie[movieIndex],i, getDataBtn);
-      // getDataBtn(movie[2],i);
-
-      // e.preventDefault();
-    // $.when(getData(movie[movieIndex],i)).then(getDataBtn(movie[2],i));
-
-
-
-
-
+      getData(movie[movieIndex],i);
     }
-
-
-
-
 }
 
-generateGrid();
+generateGrid()
 
-  // Assign on click to buttons
-  // $("#brooklyn").on("click",(event) => {getData("BROOKLYN")})
-  // $("#manhattan").on("click",(event) => {getData("MANHATTAN")})
-  // $("#queens").on("click",(event) => {getData("QUEENS")})
-  // $("#bronx").on("click",(event) => {getData("BRONX")})
-  // $("#statenIsland").on("click",(event) => {getData("STATEN ISLAND")})
 
 
 }) //document on load
