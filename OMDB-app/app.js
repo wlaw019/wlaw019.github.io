@@ -1,8 +1,13 @@
 const movie = ["The Avengers","Back to the Future","Batman","Batman V Superman: Dawn of Justice","Beverly Hills Cop","The Blair Witch Project","The Bourne Identity","The Bourne Ultimatum","The Breakfast Club","Captain America: Civil War","Casino Royale","Cast Away","Crocodile Dundee","The Dark Knight","Psycho","Pulp Fiction","Rocky","Scary Movie","Shaun of the Dead","The Shawshank Redemption","Shrek","The Silence of the Lambs","Singin in the Rain","The Sixth Sense","Skyfall"];
 
+// Array for random questions
 const category = ["Year", "Director", "Production"]
 
+// Variable to check Win scenarios
 let playerWin = "";
+
+// Variable to keep track of when to reveal questions
+let clickNum = 1;
 
 $(() => {
 
@@ -31,10 +36,15 @@ $(() => {
           const $button1 = $("<button>").addClass("rightAns").text(data[category]).appendTo($ans);
           $questionDiv.hide();
 
-          // click on genre to display question
+          // click on genre to display question, freeze Genre is clickNum is odd number
           $genre.on("click",() => {
-            $genre.hide();
-            $questionDiv.toggle();
+            if (clickNum%2!==0) {
+              $genre.hide();
+              $questionDiv.toggle();
+              clickNum++;
+              console.log(clickNum);
+            }
+
           })
 
           // click on right ans to empty everything in grid then display "O"
@@ -43,6 +53,8 @@ $(() => {
             $(x).empty().html('&#10004;').addClass("O");
             checkWin("O");
             freezeBoard(playerWin);
+            clickNum++;
+            console.log(clickNum);
           })
 
           // getDataBtn1 function to generate first wrongAns
@@ -80,6 +92,8 @@ const getDataBtn1 = (movieTitle,category, gridId) => {
           $(x).empty().text("X").addClass("X");
           checkWin("X");
           freezeBoard(playerWin);
+          clickNum++;
+          console.log(clickNum);
         })
 
         // getDataBtn2 function to generate second wrongAns
@@ -117,6 +131,8 @@ const getDataBtn2 = (movieTitle,category, gridId) => {
           $(x).empty().text("X").addClass("X");
           checkWin("X");
           freezeBoard(playerWin);
+          clickNum++;
+          console.log(clickNum);
         })
 
         // shuffle buttons
@@ -193,7 +209,16 @@ const generateGrid = () => {
     }
 }
 
-generateGrid()
+/////////////////////////////////////////////
+// start Game
+/////////////////////////////////////////////
+generateGrid();
+
+
+
+
+
+
 
 
 
