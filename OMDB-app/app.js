@@ -1,31 +1,32 @@
-const movie = ["The Avengers","Back to the Future","Batman","Batman V Superman: Dawn of Justice","Beverly Hills Cop","The Blair Witch Project","The Bourne Identity","The Bourne Ultimatum","The Breakfast Club","Captain America: Civil War","Casino Royale","Cast Away","Crocodile Dundee","The Dark Knight"];
+const movie = ["The Avengers","Back to the Future","Batman","Batman V Superman: Dawn of Justice","Beverly Hills Cop","The Blair Witch Project","The Bourne Identity","The Bourne Ultimatum","The Breakfast Club","Captain America: Civil War","Casino Royale","Cast Away","Crocodile Dundee","The Dark Knight","Psycho","Pulp Fiction","Rocky","Scary Movie","Shaun of the Dead","The Shawshank Redemption","Shrek","The Silence of the Lambs","Singin in the Rain","The Sixth Sense","Skyfall"];
 
-
+const category = ["Year", "Director", "Production"]
 
 $(() => {
 
 /////////////////////////////////////////////
 // getData function: populate grids with info and rightAns button
 /////////////////////////////////////////////
-  const getData = (movieTitle, gridId) => {
+  const getData = (movieTitle, category, gridId) => {
     // let userInput = $('input[type="text"]').val();
 
     $.ajax({
       url:'http://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
     }).then(
       (data)=>{
-        console.log(data);
 
           let x = "#"+gridId;
           console.log(x);
+          console.log(movieTitle);
+        console.log(data);
           let splitGenre = data.Genre.split(",")[0];
           const $genre = $("<h3>").addClass("genre").text(splitGenre).appendTo($(x));
 
           const $questionDiv = $("<div>").addClass("questionDiv").appendTo($(x));
           const $title = $("<h4>").addClass("title").text(data.Title).appendTo($questionDiv);
-          const $question = $("<p>").addClass("question").text("Year").appendTo($questionDiv);
+          const $question = $("<p>").addClass("question").text(category).appendTo($questionDiv);
           const $ans = $("<div>").addClass("ans").appendTo($questionDiv);
-          const $button1 = $("<button>").addClass("rightAns").text(data.Year).appendTo($ans);
+          const $button1 = $("<button>").addClass("rightAns").text(data[category]).appendTo($ans);
           $questionDiv.hide();
 
           // click on genre to display question
@@ -41,7 +42,7 @@ $(() => {
 
           // getDataBtn1 function to generate first wrongAns
           let movieIndexWrong1 = Math.floor(Math.random()*movie.length);
-          getDataBtn1(movie[movieIndexWrong1],gridId);
+          getDataBtn1(movie[movieIndexWrong1],category,gridId);
         },
       ()=>{
         console.log('bad');
@@ -53,7 +54,7 @@ $(() => {
 /////////////////////////////////////////////
 // getDataBtn1 function: callback function in getData to generate first wrongAns button
 /////////////////////////////////////////////
-const getDataBtn1 = (movieTitle, gridId) => {
+const getDataBtn1 = (movieTitle,category, gridId) => {
 
   $.ajax({
     url:'http://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
@@ -61,9 +62,13 @@ const getDataBtn1 = (movieTitle, gridId) => {
     (data)=>{
 
         let x = "#"+gridId;
+        console.log("Btn1");
+        console.log(x);
+        console.log(movieTitle);
+      console.log(data);
         let $ans = $(x).children().eq(1).children().eq(2);
         // console.log($ans);
-        const $button2 = $("<button>").addClass("wrongAns").text(data.Year).appendTo($ans);
+        const $button2 = $("<button>").addClass("wrongAns").text(data[category]).appendTo($ans);
 
         // click on wrong ans to empty everything in grid then display "X"
         $button2.on("click", () => {
@@ -72,7 +77,7 @@ const getDataBtn1 = (movieTitle, gridId) => {
 
         // getDataBtn2 function to generate second wrongAns
         let movieIndexWrong2 = Math.floor(Math.random()*movie.length);
-        getDataBtn2(movie[movieIndexWrong2],gridId);
+        getDataBtn2(movie[movieIndexWrong2],category,gridId);
     },
     ()=>{
       console.log('bad');
@@ -84,7 +89,7 @@ const getDataBtn1 = (movieTitle, gridId) => {
 /////////////////////////////////////////////
 // getDataBtn2 function: callback function in getDataBtn1 to generate second wrongAns button and shuffle buttons
 /////////////////////////////////////////////
-const getDataBtn2 = (movieTitle, gridId) => {
+const getDataBtn2 = (movieTitle,category, gridId) => {
 
   $.ajax({
     url:'http://www.omdbapi.com/?apikey=53aa2cd6&t='+movieTitle
@@ -92,9 +97,13 @@ const getDataBtn2 = (movieTitle, gridId) => {
     (data)=>{
 
         let x = "#"+gridId;
+        console.log("Btn2");
+        console.log(x);
+        console.log(movieTitle);
+    console.log(data);
         let $ans = $(x).children().eq(1).children().eq(2);
         // console.log($ans);
-        const $button2 = $("<button>").addClass("wrongAns").text(data.Year).appendTo($ans);
+        const $button2 = $("<button>").addClass("wrongAns").text(data[category]).appendTo($ans);
 
         // click on wrong ans to empty everything in grid then display "X"
         $button2.on("click", () => {
@@ -135,7 +144,8 @@ const generateGrid = () => {
   		$('.container').append($div);
 
       let movieIndex = Math.floor(Math.random()*movie.length);
-      getData(movie[movieIndex],i);
+      let categoryIndex = Math.floor(Math.random()*category.length);
+      getData(movie[movieIndex],category[categoryIndex],i);
     }
 }
 
