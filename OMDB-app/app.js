@@ -2,6 +2,8 @@ const movie = ["The Avengers","Back to the Future","Batman","Batman V Superman: 
 
 const category = ["Year", "Director", "Production"]
 
+let playerWin = "";
+
 $(() => {
 
 /////////////////////////////////////////////
@@ -39,6 +41,20 @@ $(() => {
           $button1.on("click", () => {
             // $(x).empty().text("O").addClass("O");
             $(x).empty().html('&#10004;').addClass("O");
+
+              checkWin("O");
+
+              if (playerWin==="yes") {
+                // No more clicks can occur on board
+                $(".genre").off("click");
+
+              } else {
+                //Check all grids are occupied
+                if ($(".grid").text().length===9) {
+                  alert("No one won!")
+                }
+              }
+
           })
 
           // getDataBtn1 function to generate first wrongAns
@@ -74,6 +90,18 @@ const getDataBtn1 = (movieTitle,category, gridId) => {
         // click on wrong ans to empty everything in grid then display "X"
         $button2.on("click", () => {
           $(x).empty().text("X").addClass("X");
+            checkWin("X");
+
+            if (playerWin==="yes") {
+              // No more clicks can occur on board
+              $(".genre").off("click");
+            } else {
+              //Check all grids are occupied
+              if ($(".grid").text().length===9) {
+                alert("No one won!")
+              }
+            }
+
         })
 
         // getDataBtn2 function to generate second wrongAns
@@ -109,6 +137,18 @@ const getDataBtn2 = (movieTitle,category, gridId) => {
         // click on wrong ans to empty everything in grid then display "X"
         $button2.on("click", () => {
           $(x).empty().text("X").addClass("X");
+            checkWin("X");
+
+            if (playerWin==="yes") {
+              // No more clicks can occur on board
+              $(".genre").off("click");
+            } else {
+              //Check all grids are occupied
+              if ($(".grid").text().length===9) {
+                alert("No one won!")
+              }
+            }
+
         })
 
         // shuffle buttons
@@ -133,6 +173,27 @@ const shuffleBtn = (gridId) => {
     $ans.append($ans.children().eq(Math.floor(Math.random() * k)));
   }
 
+}
+
+/////////////////////////////////////////////
+// checkWin function
+/////////////////////////////////////////////
+const checkWin = (symbol) => {
+    let classCheck = "grid "+symbol
+
+    // There are 8 win scenarios
+    if ((($("#1").attr("class")===classCheck)&&($("#2").attr("class")===classCheck)&&($("#3").attr("class")===classCheck))||
+    (($("#4").attr("class")===classCheck)&&($("#5").attr("class")===classCheck)&&($("#6").attr("class")===classCheck))||
+    (($("#7").attr("class")===classCheck)&&($("#8").attr("class")===classCheck)&&($("#9").attr("class")===classCheck))||
+    (($("#1").attr("class")===classCheck)&&($("#4").attr("class")===classCheck)&&($("#7").attr("class")===classCheck))||
+    (($("#2").attr("class")===classCheck)&&($("#5").attr("class")===classCheck)&&($("#8").attr("class")===classCheck))||
+    (($("#3").attr("class")===classCheck)&&($("#6").attr("class")===classCheck)&&($("#9").attr("class")===classCheck))||
+    (($("#1").attr("class")===classCheck)&&($("#5").attr("class")===classCheck)&&($("#9").attr("class")===classCheck))||
+    (($("#3").attr("class")===classCheck)&&($("#5").attr("class")===classCheck)&&($("#7").attr("class")===classCheck))
+  ) {
+      playerWin = "yes";
+      alert(symbol +" player won!");
+    }
 }
 
 /////////////////////////////////////////////
