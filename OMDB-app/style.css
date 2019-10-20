@@ -46,7 +46,6 @@ p{
   height: 600px;
   display: flex;
   flex-wrap: wrap;
-
   background-color: #eeeeee;
 }
 
@@ -106,10 +105,10 @@ button{
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  /* overflow: auto; */
+  overflow: auto;
 }
 
-@media only screen and (max-width:650px) {
+@media only screen and (max-width:700px) {
   img{
     width: 300px;
     height: 300px;
@@ -135,6 +134,11 @@ button{
     height: 300px;
     width: 300px;
     z-index: 1;
+  }
+
+  /* turn off hover mode */
+  .grid:hover{
+    background-color: #eeeeee;
   }
 
 }
