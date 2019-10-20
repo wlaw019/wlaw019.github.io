@@ -1,24 +1,60 @@
+body{
+  background-color: whitesmoke;
+  font-family: "DM Sans";
+}
+
+img{
+  display: block;
+  margin: 0 auto;
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+}
+
 h1{
   text-align: center;
+  text-shadow: 2px 2px #92b2ba;;
 }
 
 h2{
   text-align: center;
+  color: #92b2ba;
+}
+
+h3{
+  text-align: center;
+  color: #777777;
+}
+
+h3:hover{
+  color: black;
+}
+
+h4{
+  text-align: center;
+  font-size: 22px;
+  margin: 5px auto;
+}
+
+p{
+  margin: 5px auto;
 }
 
 .container{
+  margin: 0 auto;
   width: 600px;
   height: 600px;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
+
+  background-color: #eeeeee;
 }
 
 .grid{
   width: 200px;
   height: 200px;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid #92b2ba;;
   /* font-size: 16px; */
   display: flex;
   flex-direction: column;
@@ -27,45 +63,78 @@ h2{
   flex-wrap: wrap;
 }
 
+.grid:hover{
+  background-color: rgba(240, 168, 187,0.8);
+}
+
 .O, .X{
   font-size: 80px;
+}
+
+.O{
+  color: green;
+}
+
+.X{
+  color: red;
+}
+
+button{
+  padding: 5px;
+  margin: 5px auto;
+  border-radius: 10px;
+  min-width: 150px;
 }
 
 .rightAns{
   background-color: lightblue;
 }
 
-#grid1 button{
-  background-color: red;
+.questionDiv{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
 }
 
-@media only screen and (max-width:600px) {
+.ans{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* overflow: auto; */
+}
+
+@media only screen and (max-width:650px) {
+  img{
+    width: 300px;
+    height: 300px;
+  }
+
   .container{
     width: 300px;
     height: 300px;
     position: relative;
-    /* top: 120px;
-    left: 110px; */
   }
 
   .grid{
     width: 100px;
     height: 100px;
-    /* font-size: 80px; */
   }
 
   .questionDiv {
-	background-color: rgba(0, 0, 0, 0.8);
-	position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0 auto;
-	height: 300px;
-	width: 300px;
-	z-index: 1;
-  box-sizing: border-box;
-	/* overflow: auto; */
-	/* display: none; */
-}
+    background-color: rgba(240, 168, 187,0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    height: 300px;
+    width: 300px;
+    z-index: 1;
+  }
 
 }

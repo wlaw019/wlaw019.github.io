@@ -218,12 +218,10 @@ const generateGrid = () => {
 // start Game
 /////////////////////////////////////////////
 generateGrid();
-
-
-
-
-
-
+$(".container").hide();
+$("img").fadeOut(1000,() => {
+  $(".container").fadeIn(1000);
+})
 
 
 
