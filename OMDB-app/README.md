@@ -12,13 +12,12 @@ https://wlaw019.github.io/OMDB-app/
 Limitation: I can only get data one movie at a time.  No built-in filter by years or popularity as such.
 http://www.omdbapi.com/
 
-* Most popular 100 movies.
+* Most popular 100 movies.         
 Limitation: I had to post-process the data to fit an array format
 https://www.listchallenges.com/100-of-the-most-popular-movies-of-all-time
 
 * Other databases explored but not used due to having the same limitation as OMDb (can only search by title)  
 https://rapidapi.com/imdb/api/movie-database-imdb-alternative
-
 https://rapidapi.com/IVALLC/api/entertainment-data-hub
 
 
@@ -52,6 +51,7 @@ Here are the steps taken for every grid on board
 ```
 ## Functions Used to populate grid
 const move = ["The Avengers","Back to the Future","Batman",...]
+
 const category = ["Year", "Director", "Production"]
 
 ### getData()
