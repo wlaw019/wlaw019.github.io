@@ -3,6 +3,12 @@ const movie = ["The Avengers","Back to the Future","Batman","Beverly Hills Cop",
 // Array for random questions
 const category = ["Year", "Director", "Production"]
 
+// Array to collect all answners generated
+const year = [];
+const director = [];
+const production = [];
+
+
 // Variable to check Win scenarios
 let playerWin = "";
 
@@ -35,6 +41,9 @@ $(() => {
           const $ans = $("<div>").addClass("ans").appendTo($questionDiv);
           const $button1 = $("<button>").addClass("rightAns").text(data[category]).appendTo($ans);
           $questionDiv.hide();
+
+          // push answner into correct array
+          ansTotal(category, data);
 
           // click on genre to display question, freeze Genre with clickNum to ensure only one Genre can be revealed at a time
           $genre.on("click",() => {
@@ -87,6 +96,9 @@ const getDataBtn1 = (movieTitle,category, gridId) => {
         // console.log($ans);
         const $button2 = $("<button>").addClass("wrongAns").text(data[category]).appendTo($ans);
 
+        // push answner into correct array
+        ansTotal(category, data);
+
         // click on wrong ans to empty everything in grid then display "X"
         $button2.on("click", () => {
           $(x).empty().text("X").addClass("X");
@@ -126,6 +138,9 @@ const getDataBtn2 = (movieTitle,category, gridId) => {
         // console.log($ans);
         const $button2 = $("<button>").addClass("wrongAns").text(data[category]).appendTo($ans);
 
+        // push answner into correct array
+        ansTotal(category, data);
+
         // click on wrong ans to empty everything in grid then display "X"
         $button2.on("click", () => {
           $(x).empty().text("X").addClass("X");
@@ -145,6 +160,9 @@ const getDataBtn2 = (movieTitle,category, gridId) => {
 
 }
 
+console.log(year);
+console.log(director);
+console.log(production);
 /////////////////////////////////////////////
 // shuffleBtn function
 /////////////////////////////////////////////
@@ -196,6 +214,22 @@ const freezeBoard = (playerWin) => {
     if ($(".grid").text().length===9) {
       alert("No one won!")
     }
+  }
+}
+
+/////////////////////////////////////////////
+// ansTotal function: collect all answners generated into correct array
+/////////////////////////////////////////////
+const ansTotal = (category, data) => {
+  switch (category) {
+    case "Year":
+      year.push(data[category]);
+      break;
+    case "Director":
+      director.push(data[category]);
+      break;
+    case "Production":
+      production.push(data[category]);
   }
 }
 
