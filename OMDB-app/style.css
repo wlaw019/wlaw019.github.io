@@ -109,7 +109,7 @@ button{
 
 /* @media only screen and */
 
-@media(max-width:1000px) {
+@media(max-width:1000px) and (orientation:landscape) {
   img{
     width: 300px;
     height: 300px;
