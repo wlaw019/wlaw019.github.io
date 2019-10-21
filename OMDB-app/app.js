@@ -164,7 +164,7 @@ console.log(year);
 console.log(director);
 console.log(production);
 /////////////////////////////////////////////
-// shuffleBtn function
+// shuffleBtn function: replace duplicate wrong buttons and shuffle their orders
 /////////////////////////////////////////////
 const shuffleBtn = (gridId) => {
 
@@ -173,9 +173,10 @@ const shuffleBtn = (gridId) => {
 
   let $question = $ans.prev();
 
-  // console.log("Random"+$ans.children().eq(0).text());
+  // Replace duplicate wrong buttons by accesing arrays created by ansTotal function
   while ((($ans.children().eq(0).text())===($ans.children().eq(1).text()))||
-         (($ans.children().eq(0).text())===($ans.children().eq(2).text()))) {
+         (($ans.children().eq(0).text())===($ans.children().eq(2).text()))||
+         (($ans.children().eq(1).text())===($ans.children().eq(2).text()))) {
 
           console.log(gridId + "*********************************" + $question.text());
           if ($question.text()==="Year") {
@@ -197,37 +198,7 @@ const shuffleBtn = (gridId) => {
 
   }
 
-
-
-
-  // while ((($ans.children().eq(0).text())===($ans.children().eq(1).text()))||
-  //       (($ans.children().eq(0).text())===($ans.children().eq(2).text()))) {
-  //
-  //
-  //         if ($question.text()==="Year") {
-  //           $ans.children().eq(1).text() = year[Math.floor(Math.random()*year.length)];
-  //           console.log("Random" + year[Math.floor(Math.random()*year.length)]);
-  //         } else if (category==="Director") {
-  //           $ans.children().eq(1).text() = director[Math.floor(Math.random()*director.length)];
-  //           console.log("Random" + director[Math.floor(Math.random()*director.length)]);
-  //         } else if (category==="Production") {
-  //           $ans.children().eq(1).text() = production[Math.floor(Math.random()*production.length)];
-  //           console.log("Random" + production[Math.floor(Math.random()*production.length)]);
-  //         }
-  //
-  //
-  //
-  //         if ($question.text()==="Year") {
-  //           $ans.children().eq(2).text() = year[Math.floor(Math.random()*year.length)];
-  //         } else if (category==="Director") {
-  //           $ans.children().eq(2).text() = director[Math.floor(Math.random()*director.length)];
-  //         } else if (category==="Production") {
-  //           $ans.children().eq(2).text() = production[Math.floor(Math.random()*production.length)];
-  //         }
-  //
-  // }
-
-
+  // shuffle buttons
   for (let k = $ans.children().length; k >= 0; k--) {
     $ans.append($ans.children().eq(Math.floor(Math.random() * k)));
   }
