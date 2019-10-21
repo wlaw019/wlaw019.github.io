@@ -171,9 +171,63 @@ const shuffleBtn = (gridId) => {
   let x = "#"+gridId;
   let $ans = $(x).children().eq(1).children().eq(2);
 
+  let $question = $ans.prev();
+
+  // console.log("Random"+$ans.children().eq(0).text());
+  if ((($ans.children().eq(0).text())===($ans.children().eq(1).text()))) {
+
+          console.log(gridId + "********" + $question.text());
+          // console.log(gridId + "********" + year[Math.floor(Math.random()*year.length)]);
+          if ($question.text()==="Year") {
+            $ans.children().eq(1).text(year[Math.floor(Math.random()*year.length)]);
+            // console.log("Random****************" + year[Math.floor(Math.random()*year.length)]);
+          } else if ($question.text()==="Director") {
+            $ans.children().eq(1).text(director[Math.floor(Math.random()*director.length)]);
+            // console.log("Random****************" + director[Math.floor(Math.random()*director.length)]);
+          } else if ($question.text()==="Production") {
+            $ans.children().eq(1).text(production[Math.floor(Math.random()*production.length)]);
+            // console.log("Random****************" + production[Math.floor(Math.random()*production.length)]);
+          }
+
+
+
+  }
+
+
+
+
+  // while ((($ans.children().eq(0).text())===($ans.children().eq(1).text()))||
+  //       (($ans.children().eq(0).text())===($ans.children().eq(2).text()))) {
+  //
+  //
+  //         if ($question.text()==="Year") {
+  //           $ans.children().eq(1).text() = year[Math.floor(Math.random()*year.length)];
+  //           console.log("Random" + year[Math.floor(Math.random()*year.length)]);
+  //         } else if (category==="Director") {
+  //           $ans.children().eq(1).text() = director[Math.floor(Math.random()*director.length)];
+  //           console.log("Random" + director[Math.floor(Math.random()*director.length)]);
+  //         } else if (category==="Production") {
+  //           $ans.children().eq(1).text() = production[Math.floor(Math.random()*production.length)];
+  //           console.log("Random" + production[Math.floor(Math.random()*production.length)]);
+  //         }
+  //
+  //
+  //
+  //         if ($question.text()==="Year") {
+  //           $ans.children().eq(2).text() = year[Math.floor(Math.random()*year.length)];
+  //         } else if (category==="Director") {
+  //           $ans.children().eq(2).text() = director[Math.floor(Math.random()*director.length)];
+  //         } else if (category==="Production") {
+  //           $ans.children().eq(2).text() = production[Math.floor(Math.random()*production.length)];
+  //         }
+  //
+  // }
+
+
   for (let k = $ans.children().length; k >= 0; k--) {
     $ans.append($ans.children().eq(Math.floor(Math.random() * k)));
   }
+
 
 }
 
@@ -202,6 +256,7 @@ const checkWin = (symbol) => {
 
     }
 }
+
 /////////////////////////////////////////////
 // freezeBoard function: No more clicks can occur on board after win, check No one won scenario
 /////////////////////////////////////////////
