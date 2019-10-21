@@ -50,7 +50,7 @@ Here are the steps taken for every grid on board
 12 </div>
 ```
 ## Functions Used to populate grid
-const move = ["The Avengers","Back to the Future","Batman",...]
+const movie = ["The Avengers","Back to the Future","Batman",...]
 
 const category = ["Year", "Director", "Production"]
 
@@ -76,7 +76,9 @@ const category = ["Year", "Director", "Production"]
 *** All AJAX had to be chained to ensure the order of execution
 
 ### Limitations of the App
-* My App is only as good as the API
-No data for the movie selected (test engineer!!!)
+* My App is only as good as the API.  No data for the movie selected (test engineer!!!)
 "N/A" data listed inside the API
-* shuffleBtn() updates duplicate buttons but do not take care of cases like 20th Century Fox vs 20th Century-Fox VS twentieth Century Fox
+* shuffleBtn() updates duplicate buttons but does not take care of cases like:
+  * 20th Century Fox
+  * 20th Century-Fox
+  * twentieth Century Fox
