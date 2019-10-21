@@ -109,7 +109,7 @@ button{
 
 /* @media only screen and */
 
-@media(max-width:600px), device and (orientation: landscape) {
+@media(max-width:600px) and (max-height: 600px) {
   img{
     width: 300px;
     height: 300px;
