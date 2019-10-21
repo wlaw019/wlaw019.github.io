@@ -76,8 +76,9 @@ const category = ["Year", "Director", "Production"]
 *** All AJAX had to be chained to ensure the order of execution
 
 ### Limitations of the App
-* My App is only as good as the API.  No data for the movie selected (test engineer!!!)
-"N/A" data listed inside the API
+* My App is only as good as the API
+    * No entry for the movie selected (test engineer!!!)
+    * "N/A" data listed inside the API
 * shuffleBtn() updates duplicate buttons but does not take care of cases like:
   * 20th Century Fox
   * 20th Century-Fox
