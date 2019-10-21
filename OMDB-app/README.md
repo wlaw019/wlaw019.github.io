@@ -29,6 +29,8 @@ https://rapidapi.com/IVALLC/api/entertainment-data-hub
 * Google Fonts
 
 ### Approach Taken
+Here are the steps taken for every grid on board
+
 ![grid genre](img/genre.png)
 
 ![grid data](img/gridData.png)
@@ -46,10 +48,26 @@ https://rapidapi.com/IVALLC/api/entertainment-data-hub
 10         </div>
 11     </div>
 12 </div>
-
-
 ```
+## Functions Used to populate grid
+# getData()
+* This function populates line 1 to 7 based on using the movie array
+* Randomly picked movie and category then AJAX
 
+# getDataBtn1()
+* Callback function in getData()
+* This function creates the 1st WrongAns button on line 8
+* Randomly picked another movie but with the same category from getData() then run another AJAX
+
+# getDataBtn2()
+* Callback function in getDataBtn1
+* This function creates 2nd WrongAns button on line 9
+* Randomly picked another movie but with the same category from getData() then run another AJAX
+
+# shuffleBtn()
+* Callback function in getDataBtn2
+* This function checks for duplicate buttons (rightAns = wrongAns, wrongAns1 = wrongAns2) and replace the wrongAns with another randomly generated answer based on the ansTotal array (contains all the ans generated for the board)
+* Last step is to shuffle the buttons so that the rightAns is not always the first button
 
 
 What things you need to install the software and how to install them
