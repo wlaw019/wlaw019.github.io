@@ -1,12 +1,56 @@
-# Project Title
+# OMDb Tic Tac Toe
+https://wlaw019.github.io/OMDB-app/
 
-One Paragraph of project description goes here
+* Randomly generate questions under three categories (Year, Director and Production) based on top 100 movies
+* User can only reveal one question (Genre) at a time
+* User put a "check" mark on the board if the question is answered correctly, otherwise a "X"
+* Identity User Won, User Lost or No one Won and then freeze the board
 
-## Getting Started
+## Resources Used
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+* OMDb API used for all the questions and answers data.  
+Limitation: I can only get data one movie at a time.  No built-in filter by years or popularity as such.
+http://www.omdbapi.com/
 
-### Prerequisites
+* Most popular 100 movies.
+Limitation: I had to post-process the data to fit an array format
+https://www.listchallenges.com/100-of-the-most-popular-movies-of-all-time
+
+* Other databases explored but not used due to having the same limitation as OMDb (can only search by title)  
+https://rapidapi.com/imdb/api/movie-database-imdb-alternative
+https://rapidapi.com/IVALLC/api/entertainment-data-hub
+
+
+### Technology Used
+* HTML
+* CSS   
+* Javascript
+* jQuery  
+* Google Fonts
+
+### Approach Taken
+![grid genre](img/genre.png)
+
+![grid data](img/gridData.png)
+
+```html
+1  <div class = "grid">
+2      <h3 class = "genre"></h3>
+3      <div class = "questionDiv">
+4          <h4 class = "title"></h4>
+5          <p class = "question"></p>
+6          <div class = "ans">
+7              <button class = "rightAns"></button>
+8              <button class = "wrongAns"></button>
+9              <button class = "wrongAns"></button>
+10         </div>
+11     </div>
+12 </div>
+
+
+```
+
+
 
 What things you need to install the software and how to install them
 
