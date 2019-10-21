@@ -8,7 +8,6 @@ const year = [];
 const director = [];
 const production = [];
 
-
 // Variable to check Win scenarios
 let playerWin = "";
 
@@ -195,14 +194,12 @@ const shuffleBtn = (gridId) => {
           } else if ($question.text()==="Production") {
             $ans.children().eq(2).text(production[Math.floor(Math.random()*production.length)]);
           }
-
   }
 
   // shuffle buttons
   for (let k = $ans.children().length; k >= 0; k--) {
     $ans.append($ans.children().eq(Math.floor(Math.random() * k)));
   }
-
 
 }
 
