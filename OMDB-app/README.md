@@ -13,7 +13,7 @@ Limitation: I can only get data one movie at a time.  No built-in filter by year
 http://www.omdbapi.com/
 
 * Most popular 100 movies.         
-Limitation: I had to post-process the data to fit an array format
+Limitation: I had to post-process the data to fit an array format       
 https://www.listchallenges.com/100-of-the-most-popular-movies-of-all-time
 
 * Other databases explored but not used due to having the same limitation as OMDb (can only search by title)  
