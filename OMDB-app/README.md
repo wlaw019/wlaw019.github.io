@@ -17,7 +17,7 @@ Limitation: I had to post-process the data to fit an array format
 https://www.listchallenges.com/100-of-the-most-popular-movies-of-all-time
 
 * Other databases explored but not used due to having the same limitation as OMDb (can only search by title)  
-https://rapidapi.com/imdb/api/movie-database-imdb-alternative
+https://rapidapi.com/imdb/api/movie-database-imdb-alternative        
 https://rapidapi.com/IVALLC/api/entertainment-data-hub
 
 
