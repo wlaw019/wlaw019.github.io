@@ -4,7 +4,7 @@ https://wlaw019.github.io/OMDB-app/
 * Randomly generate questions under three categories (Year, Director and Production) based on most popular 100 movies
 * User can only reveal one question (Genre) at a time
 * User put a "check" mark on the board if the question is answered correctly, otherwise a "X"
-* Identity User Won, User Lost or No one Won and then freeze the board
+* Identify User Won, User Lost or No one Won and then freeze the board
 
 ## Resources Used
 
@@ -73,7 +73,7 @@ const category = ["Year", "Director", "Production"]
 * This function checks for duplicate buttons (rightAns = wrongAns, wrongAns1 = wrongAns2) and update the wrongAns with another randomly generated answer based on the ansTotal array (contains all the ans generated for the board)
 * Last step is to shuffle the buttons so that the rightAns is not always the first button
 
-*** All AJAX had to be chained to ensure the order of execution
+*** All AJAX had to be chained to ensure the order of execution is correct
 
 ### Limitations of the App
 * My App is only as good as the API
