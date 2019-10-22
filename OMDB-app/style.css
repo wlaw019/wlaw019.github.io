@@ -21,8 +21,14 @@ h2{
 }
 
 h3{
-  text-align: center;
   color: #777777;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }
 
 h3:hover{
@@ -95,7 +101,6 @@ button{
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-
 }
 
 .ans{
@@ -111,6 +116,11 @@ button{
   img{
     width: 300px;
     height: 300px;
+  }
+
+  h3{
+    width: 100px;
+    height: 100px;
   }
 
   .container{

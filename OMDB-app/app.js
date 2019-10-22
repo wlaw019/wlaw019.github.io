@@ -1,4 +1,4 @@
-// 100 movies array from https://www.listchallenges.com/100-of-the-most-popular-movies-of-all-time
+// 100 movies from https://www.listchallenges.com/100-of-the-most-popular-movies-of-all-time
 const movie = ["The Avengers","Back to the Future","Batman","Beverly Hills Cop","The Blair Witch Project","The Bourne Identity","The Bourne Ultimatum","The Breakfast Club","Captain America: Civil War","Casino Royale","Cast Away","Crocodile Dundee","The Dark Knight","The Dark Knight Rises","Deadpool","Die Hard","Dracula","Dumb and Dumber","Dunkirk","E","The Empire Strikes Back","The Exorcist","Ferris Bueller's Day Off","Finding Nemo","Forrest Gump","Frozen","Furious 7","Ghostbusters","Gladiator","The Godfather","Goldfinger","Gone With the Wind","The Goonies","Groundhog Day","The Hangover","Harry Potter","Home Alone","Hook","The Hunger Games","The Incredibles","Independence Day","Indiana Jones and the Last Crusade","Indiana Jones and the Temple of Doom","Inside Out","Iron Man","Jaws","Jurassic Park","Jurassic World","The Lion King","The Lord of the Rings: The Fellowship of the Ring","The Lord of the Rings: The Return of the King","The Lord of the Rings: The Two Towers","The Matrix","Men in Black","Mission: Impossible","Monty Python and the Holy Grail","The Mummy","The Passion of the Christ","Pirates of the Caribbean: The Curse of the Black Pearl","Planet of the Apes","The Princess Bride","Psycho","Pulp Fiction","Rocky","Scary Movie","Shaun of the Dead","The Shawshank Redemption","Shrek","The Silence of the Lambs","Singin in the Rain","The Sixth Sense","Skyfall","The Sound of Music","Spaceballs","Spider-Man","Star Trek","Star Wars","Star Wars: Episode I - The Phantom Menace","Superman","The Ten Commandments","Terminator 2: Judgment Day","Titanic","Toy Story","Transformers","Twilight","Twister","X-Men"];
 
 // Array for random questions
@@ -31,7 +31,7 @@ $(() => {
           let x = "#"+gridId;
           console.log(x);
           console.log(movieTitle);
-        console.log(data);
+          console.log(data);
           let splitGenre = data.Genre.split(",")[0];
           const $genre = $("<h3>").addClass("genre").text(splitGenre).appendTo($(x));
 
@@ -91,7 +91,7 @@ const getDataBtn1 = (movieTitle,category, gridId) => {
         console.log("Btn1");
         console.log(x);
         console.log(movieTitle);
-      console.log(data);
+        console.log(data);
         let $ans = $(x).children().eq(1).children().eq(2);
         // console.log($ans);
         const $button2 = $("<button>").addClass("wrongAns").text(data[category]).appendTo($ans);
@@ -133,7 +133,7 @@ const getDataBtn2 = (movieTitle,category, gridId) => {
         console.log("Btn2");
         console.log(x);
         console.log(movieTitle);
-    console.log(data);
+        console.log(data);
         let $ans = $(x).children().eq(1).children().eq(2);
         // console.log($ans);
         const $button2 = $("<button>").addClass("wrongAns").text(data[category]).appendTo($ans);
