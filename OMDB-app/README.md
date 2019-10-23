@@ -20,6 +20,8 @@ https://www.listchallenges.com/100-of-the-most-popular-movies-of-all-time
 https://rapidapi.com/imdb/api/movie-database-imdb-alternative        
 https://rapidapi.com/IVALLC/api/entertainment-data-hub
 
+## Wire Framing
+![wire framing](img/wireFraming.jpg)
 
 ### Technology Used
 * HTML
@@ -83,3 +85,4 @@ const category = ["Year", "Director", "Production"]
   * 20th Century Fox
   * 20th Century-Fox
   * twentieth Century Fox
+* More fluff!?!
