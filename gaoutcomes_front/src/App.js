@@ -8,11 +8,34 @@ class App extends React.Component{
       view: "home",
       formInputs:{
         course: null,
-        cohort: null
+        cohort: null,
+        id: null
       }
     }
   }
 
+
+  handleView = (view, courseData) => {
+    let formInputs = {
+      course: "",
+      cohort: "",
+      dategraduated: ""
+    }
+
+    if (view==="editCourse") {
+      formInputs = {
+        course: courseData.course,
+        cohort: courseData.cohort,
+        dategraduated: courseData.dategraduated,
+        id: courseData.id
+      }
+    }
+
+    this.setState({
+      view: view,
+      formInputs: formInputs
+    })
+  }
 
 
   render(){
@@ -23,8 +46,8 @@ class App extends React.Component{
         </header>
         <nav>
           <h2>NAVIGATE</h2>
-          <h4>Home</h4>
-          <h4>Add Course</h4>
+          <h4 onClick={() => {this.handleView("home")}}>Home</h4>
+          <h4 onClick={() => {this.handleView("addCourse")}}>Add Course</h4>
         </nav>
         <Courses />
       </div>

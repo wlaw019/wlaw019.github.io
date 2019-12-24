@@ -47,6 +47,8 @@ class Courses extends React.Component{
               <td>{course.course}</td>
               <td>{course.cohort}</td>
               <td>{course.dategraduated}</td>
+              <td><button>&#9998;</button></td>
+              <td><button>&#128465;</button></td>
             </tr>
           ))
       }
