@@ -16,7 +16,6 @@ const pool = new Pool({
 // ========================
 
 const getUsers = (req, res) => {
-  console.log("getUsers is running");
   pool.query("SELECT * FROM students", (err, results) => {
     if (err) {
       console.log(err);
