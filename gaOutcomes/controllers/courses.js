@@ -19,7 +19,7 @@ const pool = new Pool({
 // ========================
 
 router.get('/', (req, res) => {
-  pool.query("SELECT * FROM students", (err, results) => {
+  pool.query("SELECT * FROM courses", (err, results) => {
     if (err) {
       console.log(err);
     } else {
@@ -29,27 +29,14 @@ router.get('/', (req, res) => {
 })
 
 
-router.get('/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-
-  pool.query("SELECT * FROM students WHERE id = $1", [id], (err, results) => {
-    if (err) {
-      console.log(err);
-    }else {
-      res.json(results.rows);
-    }
-  })
-})
-
-
 router.post('/', (req, res) => {
-  const {name, course, cohort} = req.body;
+  const {course, cohort} = req.body;
 
-  pool.query("INSERT INTO students (name, course, cohort) VALUES ($1, $2, $3)", [name, course, cohort], (err, results) => {
+  pool.query("INSERT INTO courses (course, cohort) VALUES ($1, $2)", [course, cohort], (err, results) => {
     if (err) {
       console.log(err);
     }else {
-      res.send("Student created");
+      res.send("Course created");
     }
   })
 })
@@ -57,13 +44,13 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const {name, course, cohort} = req.body;
+  const {course, cohort} = req.body;
 
-  pool.query("UPDATE students SET name = $1, course = $2, cohort = $3 WHERE id = $4", [name, course, cohort, id], (err, results) => {
+  pool.query("UPDATE courses SET course = $1, cohort = $2 WHERE id = $3", [course, cohort, id], (err, results) => {
     if (err) {
       console.log(err);
     }else {
-      res.send("Student modified");
+      res.send("Course modified");
     }
   })
 })
@@ -72,11 +59,11 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const id = parseInt(req.params.id);
 
-  pool.query("DELETE FROM students WHERE id =$1", [id], (err, results) => {
+  pool.query("DELETE FROM courses WHERE id =$1", [id], (err, results) => {
     if (err) {
       console.log(err);
     }else {
-      res.send("Student deleted");
+      res.send("Course deleted");
     }
   })
 })

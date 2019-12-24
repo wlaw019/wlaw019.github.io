@@ -5,6 +5,7 @@
 const express = require("express");
 const app = express();
 const studentsController = require("./controllers/students.js");
+const coursesController = require("./controllers/courses.js");
 
 require("dotenv").config();
 
@@ -24,6 +25,7 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/students", studentsController);
+app.use("/courses", coursesController);
 
 // ========================
 // Routes
