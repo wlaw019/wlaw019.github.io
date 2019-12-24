@@ -5,7 +5,10 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      view: "home",
+      view:{
+        page: "home",
+        pageTitle: "Overview"
+      },
       formInputs:{
         course: null,
         cohort: null,
@@ -16,19 +19,32 @@ class App extends React.Component{
 
 
   handleView = (view, courseData) => {
+    let pageTitle = "";
+    
     let formInputs = {
       course: "",
       cohort: "",
       dategraduated: ""
     }
 
-    if (view==="editCourse") {
-      formInputs = {
-        course: courseData.course,
-        cohort: courseData.cohort,
-        dategraduated: courseData.dategraduated,
-        id: courseData.id
-      }
+    switch(view){
+      case "home":
+        pageTitle = "Overview"
+        break
+      case "addCourse":
+        pageTitle = "Add a new Course"
+        break
+      case "editCourse":
+        pageTitle = "Edit Course"
+        formInputs = {
+          course: courseData.course,
+          cohort: courseData.cohort,
+          dategraduated: courseData.dategraduated,
+          id: courseData.id
+        }
+        break
+      default:
+      break
     }
 
     this.setState({
