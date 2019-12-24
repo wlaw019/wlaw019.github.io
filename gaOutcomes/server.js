@@ -4,7 +4,7 @@
 
 const express = require("express");
 const app = express();
-const db = require("./queries.js")
+const studentsController = require("./controllers/students.js");
 
 require("dotenv").config();
 
@@ -23,6 +23,7 @@ const PORT = 3000;
 // app.use(express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use("/students", studentsController);
 
 // ========================
 // Routes
@@ -30,13 +31,6 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.json({info: "Node, Express and Postgres"});
 })
-
-
-app.get("/students", db.getUsers);
-app.get("/students/:id", db.getUserById);
-app.post("/students", db.createUser);
-app.put("/students/:id", db.updateUser);
-app.delete("/students/:id", db.deleteUser);
 
 
 // ========================

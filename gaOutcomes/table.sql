@@ -2,6 +2,8 @@ CREATE DATABASE gaoutcomes;
 
 \c gaoutcomes;
 
+DROP TABLE students;
+
 CREATE TABLE students (id SERIAL, name VARCHAR(32), course VARCHAR(32), cohort VARCHAR(32));
 
 INSERT INTO students (name, course, cohort) VALUES

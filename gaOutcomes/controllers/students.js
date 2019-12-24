@@ -1,3 +1,6 @@
+const express = require("express");
+const router = express.Router();
+
 // ========================
 // Postgres connection
 // ========================
@@ -15,7 +18,7 @@ const pool = new Pool({
 // Routes
 // ========================
 
-const getUsers = (req, res) => {
+router.get('/', (req, res) => {
   pool.query("SELECT * FROM students", (err, results) => {
     if (err) {
       console.log(err);
@@ -23,10 +26,10 @@ const getUsers = (req, res) => {
       res.json(results.rows);
     }
   })
-}
+})
 
 
-const getUserById = (req, res) => {
+router.get('/:id', (req, res) => {
   const id = parseInt(req.params.id);
 
   pool.query("SELECT * FROM students WHERE id = $1", [id], (err, results) => {
@@ -36,10 +39,10 @@ const getUserById = (req, res) => {
       res.json(results.rows);
     }
   })
-}
+})
 
 
-const createUser = (req, res) => {
+router.post('/', (req, res) => {
   const {name, course, cohort} = req.body;
 
   pool.query("INSERT INTO students (name, course, cohort) VALUES ($1, $2, $3)", [name, course, cohort], (err, results) => {
@@ -49,10 +52,10 @@ const createUser = (req, res) => {
       res.send("User created");
     }
   })
-}
+})
 
 
-const updateUser = (req, res) => {
+router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const {name, course, cohort} = req.body;
 
@@ -63,10 +66,10 @@ const updateUser = (req, res) => {
       res.send("User modified");
     }
   })
-}
+})
 
 
-const deleteUser = (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = parseInt(req.params.id);
 
   pool.query("DELETE FROM students WHERE id =$1", [id], (err, results) => {
@@ -76,12 +79,6 @@ const deleteUser = (req, res) => {
       res.send("User deleted");
     }
   })
-}
+})
 
-module.exports = {
-  getUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser
-}
+module.exports = router;
