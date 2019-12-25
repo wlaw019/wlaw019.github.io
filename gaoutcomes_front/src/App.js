@@ -18,6 +18,7 @@ class App extends React.Component{
     super(props);
     this.state = {
       courses: [],
+      students: [],
       view:{
         page: "home",
         pageTitle: "Overview"
@@ -27,6 +28,13 @@ class App extends React.Component{
         cohort: null,
         dategraduated: null,
         id: null
+      },
+      formInputsStudents:{
+        name: null,
+        course: null,
+        cohort: null,
+        dateoffer: null,
+        id: null
       }
     }
   }
@@ -34,7 +42,7 @@ class App extends React.Component{
 // ========================
 // Handlers
 // ========================
-  handleView = (view, courseData) => {
+  handleView = (view, data) => {
     let pageTitle = "";
 
     let formInputs = {
@@ -43,6 +51,14 @@ class App extends React.Component{
       dategraduated: "",
       id: null
     }
+
+    let formInputsStudents = {
+      name: "",
+      course: "",
+      cohort: "",
+      dateoffer: "",
+      id: null
+      }
 
     switch(view){
       case "home":
@@ -54,19 +70,30 @@ class App extends React.Component{
       case "editCourse":
         pageTitle = "Edit Course"
         formInputs = {
-          course: courseData.course,
-          cohort: courseData.cohort,
-          dategraduated: new Date(courseData.dategraduated).toISOString().split('T')[0],
-          id: courseData.id
+          course: data.course,
+          cohort: data.cohort,
+          dategraduated: new Date(data.dategraduated).toISOString().split('T')[0],
+          id: data.id
         }
         break
+      case "students":
+        pageTitle = "Class"
+        formInputsStudents = {
+          name: data.name,
+          course: data.course,
+          cohort: data.cohort,
+          dateoffer: new Date(data.dateoffer).toISOString().split('T')[0],
+          id: data.id
+          }
+          break
       default:
       break
     }
 
     this.setState({
       view: {page: view, pageTitle: pageTitle},
-      formInputs: formInputs
+      formInputs: formInputs,
+      formInputsStudents: formInputsStudents
     })
   }
 
@@ -147,8 +174,14 @@ class App extends React.Component{
 
         <h2>{this.state.view.pageTitle}</h2>
         {this.state.view.page === "home"?
-        <Courses handleView={this.handleView} handleDelete={this.handleDelete} courses={this.state.courses} />
-        :<FormCourse handleView={this.handleView} handleCreate={this.handleCreate} handleUpdate={this.handleUpdate} view={this.state.view} formInputs={this.state.formInputs} />}
+        <Courses handleView={this.handleView} handleDelete={this.handleDelete} courses={this.state.courses} /> : null}
+
+        {this.state.view.page === "addCourse"||this.state.view.page === "editCourse"?
+        <FormCourse handleView={this.handleView} handleCreate={this.handleCreate} handleUpdate={this.handleUpdate} view={this.state.view} formInputs={this.state.formInputs} />
+        : null}
+
+
+
 
       </div>
     )
