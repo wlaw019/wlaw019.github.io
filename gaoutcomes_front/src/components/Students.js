@@ -6,7 +6,12 @@ class Students extends React.Component{
   render(){
     return(
       <>
-        {this.props.students.length!==0? <h3>{this.props.students[0].course}: {this.props.students[0].cohort}</h3>: null}
+        {this.props.students.length!==0?
+          <>
+          <h3>{this.props.students[0].course}: {this.props.students[0].cohort}</h3>
+          <h3>Date Graduated: {new Date(this.props.students[0].dategraduated).toLocaleDateString("en-US")}</h3>
+          </>
+          : null}
 
         <table>
           <thead>
@@ -18,7 +23,7 @@ class Students extends React.Component{
           <tbody>
           {
             this.props.students.map((student) => (
-              <tr key={student.id}>
+              <tr className="student-row" key={student.id}>
                 <td>{student.name}</td>
                 <td>{new Date(student.dateoffer).toLocaleDateString("en-US")}</td>
                 <td><button onClick={() => {this.props.handleView("editStudent", student)}}>&#9998;</button></td>

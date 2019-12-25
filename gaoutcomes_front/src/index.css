@@ -24,7 +24,12 @@ table{
   width: 90%;
 }
 
-tr:hover{
+.course-row:hover{
+  background-color: lightgrey;
+  cursor: pointer;
+}
+
+.student-row:hover{
   background-color: lightgrey;
 }
 
