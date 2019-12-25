@@ -111,7 +111,7 @@ class App extends React.Component{
 
   handleCreate = (createData) => {
     let finalUrl = "";
-    
+
     if (this.state.view.page==="addCourse") {
       finalUrl = `${baseUrl}/courses`;
     } else if (this.state.view.page==="addStudent") {
@@ -126,8 +126,14 @@ class App extends React.Component{
         'Content-Type': 'application/json'
       }
     }).then(createdCourse => {
-        this.handleView('home')
-        this.fetchCourses()
+
+      if (this.state.view.page==="addCourse") {
+        this.handleView('home');
+        this.fetchCourses();
+      } else if (this.state.view.page==="addStudent") {
+        this.handleStudents(createData.course_id);
+      }
+
       }).catch(err => console.log(err))
   }
 
