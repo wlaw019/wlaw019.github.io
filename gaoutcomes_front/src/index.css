@@ -21,7 +21,7 @@ nav{
 table{
   margin: 10px auto;
   border-spacing: 0 5px;
-  width: 90%;
+  width: 80%;
 }
 
 .course-row:hover{
@@ -40,4 +40,12 @@ button:hover {
 
 nav h4:hover {
   cursor: pointer;
+}
+
+/* td{
+  border: 1px solid black;
+} */
+
+.table-button{
+  width: 5%;
 }

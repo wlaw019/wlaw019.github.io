@@ -28,8 +28,8 @@ class Students extends React.Component{
 
                 {student.dateoffer===null? <td>pending</td>: <td>{new Date(student.dateoffer).toLocaleDateString("en-US")}</td>}
 
-                <td><button onClick={() => {this.props.handleView("editStudent", student)}}>&#9998;</button></td>
-                <td><button onClick={() => {this.props.handleDelete(student.id)}}>&#128465;</button></td>
+                <td className="table-button"><button onClick={() => {this.props.handleView("editStudent", student)}}>&#9998;</button></td>
+                <td className="table-button"><button onClick={() => {this.props.handleDelete(student.id)}}>&#128465;</button></td>
               </tr>
             ))
         }
