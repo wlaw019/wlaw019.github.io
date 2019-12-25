@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const {course, cohort} = req.body;
 
-  pool.query("INSERT INTO courses (course, cohort) VALUES ($1, $2)", [course, cohort], (err, results) => {
+  pool.query("INSERT INTO courses (course, cohort, dategraduated) VALUES ($1, $2, $3)", [course, cohort], (err, results) => {
     if (err) {
       console.log(err);
     }else {
@@ -44,9 +44,9 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const {course, cohort} = req.body;
+  const {course, cohort, dategraduated} = req.body;
 
-  pool.query("UPDATE courses SET course = $1, cohort = $2 WHERE id = $3", [course, cohort, id], (err, results) => {
+  pool.query("UPDATE courses SET course = $1, cohort = $2, dategraduated = $3 WHERE id = $4", [course, cohort, dategraduated, id], (err, results) => {
     if (err) {
       console.log(err);
     }else {
