@@ -5,6 +5,9 @@ class Students extends React.Component{
 
   render(){
     return(
+      <>
+        {this.props.students.length!==0? <h3>{this.props.students[0].course}: {this.props.students[0].cohort}</h3>: null}
+
         <table>
           <thead>
             <tr>
@@ -25,6 +28,7 @@ class Students extends React.Component{
         }
           </tbody>
         </table>
+      </>
     )
   }
 }

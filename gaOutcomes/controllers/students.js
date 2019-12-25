@@ -44,9 +44,9 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  const {name, course, cohort} = req.body;
+  const {name, dateoffer, course_id} = req.body;
 
-  pool.query("INSERT INTO students (name, course, cohort) VALUES ($1, $2, $3)", [name, course, cohort], (err, results) => {
+  pool.query("INSERT INTO students (name, dateoffer, course_id) VALUES ($1, $2, $3)", [name, dateoffer, course_id], (err, results) => {
     if (err) {
       console.log(err);
     }else {

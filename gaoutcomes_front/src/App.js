@@ -2,6 +2,7 @@ import React from 'react';
 import Courses from './components/Courses.js'
 import FormCourse from './components/FormCourse.js'
 import Students from './components/Students.js'
+import FormStudent from './components/FormStudent.js'
 
 // ========================
 // URL for psql database
@@ -22,7 +23,7 @@ class App extends React.Component{
       students: [],
       view:{
         page: "home",
-        pageTitle: "Overview"
+        pageTitle: "Course Overview"
       },
       formInputs:{
         course: null,
@@ -30,7 +31,7 @@ class App extends React.Component{
         dategraduated: null,
         id: null
       },
-      formInputsStudents:{
+      formInputsStudent:{
         name: null,
         course_id: null,
         dateoffer: null,
@@ -52,16 +53,16 @@ class App extends React.Component{
       id: null
     }
 
-    // let formInputsStudents = {
-    //   name: "",
-    //   course_id: "",
-    //   dateoffer: "",
-    //   id: null
-    //   }
+    let formInputsStudent = {
+      name: "",
+      course_id: "",
+      dateoffer: "",
+      id: null
+    }
 
     switch(view){
       case "home":
-        pageTitle = "Overview"
+        pageTitle = "Course Overview"
         break
       case "addCourse":
         pageTitle = "Add a new Course"
@@ -76,28 +77,48 @@ class App extends React.Component{
         }
         break
       case "students":
-        pageTitle = "Class"
-        // formInputsStudents = {
+        pageTitle = "Class Overview"
+        formInputsStudent = {
+          name: "",
+          course_id: data,
+          dateoffer: "",
+          id: ""
+        }
+
+        this.setState({
+          formInputsStudent: formInputsStudent
+        })
+        break
+      case "addStudent":
+        pageTitle = "Aa a new Student"
+        // formInputsStudent = {
         //   name: data.name,
         //   course_id: data.course_id,
         //   dateoffer: new Date(data.dateoffer).toISOString().split('T')[0],
         //   id: data.id
-        //   }
-          break
+        // }
+        break
       default:
-      break
+        break
     }
 
     this.setState({
       view: {page: view, pageTitle: pageTitle},
-      formInputs: formInputs,
-      // formInputsStudents: formInputsStudents
+      formInputs: formInputs
     })
   }
 
 
   handleCreate = (createData) => {
-    fetch(`${baseUrl}/courses`, {
+    let finalUrl = "";
+    
+    if (this.state.view.page==="addCourse") {
+      finalUrl = `${baseUrl}/courses`;
+    } else if (this.state.view.page==="addStudent") {
+      finalUrl = `${baseUrl}/students`;
+    }
+
+    fetch(finalUrl, {
       body: JSON.stringify(createData),
       method: 'POST',
       headers: {
@@ -151,7 +172,7 @@ class App extends React.Component{
       })
     }).catch(err=>console.log(err))
     .then(() => {
-      this.handleView("students")
+      this.handleView("students", course_id)
     })
   }
 
@@ -181,7 +202,10 @@ class App extends React.Component{
         </header>
         <nav>
           <h4 onClick={() => {this.handleView("home")}}>Home</h4>
-          <h4 onClick={() => {this.handleView("addCourse")}}>Add Course</h4>
+          {this.state.view.page === "home"?
+          <h4 onClick={() => {this.handleView("addCourse")}}>Add Course</h4> : null}
+          {this.state.view.page === "students"?
+          <h4 onClick={() => {this.handleView("addStudent")}}>Add Student</h4> : null}
           <h4>Analytics</h4>
         </nav>
 
@@ -190,11 +214,15 @@ class App extends React.Component{
         <Courses handleView={this.handleView} handleDelete={this.handleDelete} courses={this.state.courses} handleStudents={this.handleStudents} /> : null}
 
         {this.state.view.page === "addCourse"||this.state.view.page === "editCourse"?
-        <FormCourse handleView={this.handleView} handleCreate={this.handleCreate} handleUpdate={this.handleUpdate} view={this.state.view} formInputs={this.state.formInputs} />
+        <FormCourse handleCreate={this.handleCreate} handleUpdate={this.handleUpdate} view={this.state.view} formInputs={this.state.formInputs} />
         : null}
 
         {this.state.view.page === "students"?
         <Students students={this.state.students} /> : null}
+
+        {this.state.view.page === "addStudent"||this.state.view.page === "editStudent"?
+        <FormStudent handleCreate={this.handleCreate} handleUpdate={this.handleUpdate} view={this.state.view} formInputsStudent={this.state.formInputsStudent} students={this.state.students} />
+        : null}
 
 
 
