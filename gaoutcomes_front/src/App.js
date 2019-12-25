@@ -56,7 +56,7 @@ class App extends React.Component{
         formInputs = {
           course: courseData.course,
           cohort: courseData.cohort,
-          dategraduated: courseData.dategraduated,
+          dategraduated: new Date(courseData.dategraduated).toISOString().split('T')[0],
           id: courseData.id
         }
         break
@@ -96,7 +96,7 @@ class App extends React.Component{
       }
     }).then(updatedCourse => {
         this.handleView('home')
-        this.fetchJobs()
+        this.fetchCourses()
       }).catch(err => console.log(err))
   }
 
