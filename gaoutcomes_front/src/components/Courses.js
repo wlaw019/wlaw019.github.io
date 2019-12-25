@@ -19,7 +19,7 @@ class Courses extends React.Component{
               <tr key={course.id}>
                 <td>{course.course}</td>
                 <td>{course.cohort}</td>
-                <td>{course.dategraduated}</td>
+                <td>{new Date(course.dategraduated).toLocaleDateString("en-US")}</td>
                 <td><button onClick={() => {this.props.handleView("editCourse", course)}}>&#9998;</button></td>
                 <td><button>&#128465;</button></td>
               </tr>
