@@ -19,7 +19,8 @@ const pool = new Pool({
 // ========================
 
 router.get('/', (req, res) => {
-  pool.query("SELECT * FROM students", (err, results) => {
+
+  pool.query("SELECT students.*, courses.course, courses.cohort, courses.dategraduated FROM students LEFT JOIN courses ON courses.id = students.course_id ORDER BY students.name", (err, results) => {
     if (err) {
       console.log(err);
     } else {

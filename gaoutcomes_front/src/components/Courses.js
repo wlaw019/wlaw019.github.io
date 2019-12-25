@@ -16,7 +16,7 @@ class Courses extends React.Component{
           <tbody>
           {
             this.props.courses.map((course) => (
-              <tr key={course.id}>
+              <tr onClick={() => {this.props.handleStudents(course.id)}} key={course.id}>
                 <td>{course.course}</td>
                 <td>{course.cohort}</td>
                 <td>{new Date(course.dategraduated).toLocaleDateString("en-US")}</td>
