@@ -98,6 +98,19 @@ class App extends React.Component{
         //   id: data.id
         // }
         break
+      case "editStudent":
+        pageTitle = "Edit Student"
+        formInputsStudent = {
+          name: data.name,
+          course_id: data.course_id,
+          dateoffer: new Date(data.dateoffer).toISOString().split('T')[0],
+          id: data.id
+          }
+
+        this.setState({
+          formInputsStudent: formInputsStudent
+        })
+        break
       default:
         break
     }
@@ -139,7 +152,15 @@ class App extends React.Component{
 
 
   handleUpdate = (updateData) => {
-    fetch(`${baseUrl}/courses/${updateData.id}`, {
+    let finalUrl = "";
+
+    if (this.state.view.page==="editCourse") {
+      finalUrl = `${baseUrl}/courses/${updateData.id}`;
+    } else if (this.state.view.page==="editStudent") {
+      finalUrl = `${baseUrl}/students/${updateData.id}`;
+    }
+
+    fetch(finalUrl, {
       body: JSON.stringify(updateData),
       method: 'PUT',
       headers: {
@@ -147,23 +168,43 @@ class App extends React.Component{
         'Content-Type': 'application/json'
       }
     }).then(updatedCourse => {
-        this.handleView('home')
-        this.fetchCourses()
+
+      if (this.state.view.page==="editCourse") {
+        this.handleView('home');
+        this.fetchCourses();
+      } else if (this.state.view.page==="editStudent") {
+        this.handleStudents(updateData.course_id);
+      }
+
       }).catch(err => console.log(err))
   }
 
 
   handleDelete = (id) => {
-    fetch(`${baseUrl}/courses/${id}`, {
+    let finalUrl = "";
+
+    if (this.state.view.page==="home") {
+      finalUrl = `${baseUrl}/courses/${id}`;
+    } else if (this.state.view.page==="students") {
+      finalUrl = `${baseUrl}/students/${id}`;
+    }
+
+    fetch(finalUrl, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       }
     }).then(json => {
+
+      if (this.state.view.page==="home") {
         this.setState({
           courses: this.state.courses.filter(course => course.id !== id)
         })
+      } else if (this.state.view.page==="students") {
+        this.handleStudents(this.state.formInputsStudent.course_id);
+      }
+      
       }).catch(err => console.log(err))
   }
 
@@ -224,7 +265,7 @@ class App extends React.Component{
         : null}
 
         {this.state.view.page === "students"?
-        <Students students={this.state.students} /> : null}
+        <Students students={this.state.students} handleView={this.handleView} handleDelete={this.handleDelete} /> : null}
 
         {this.state.view.page === "addStudent"||this.state.view.page === "editStudent"?
         <FormStudent handleCreate={this.handleCreate} handleUpdate={this.handleUpdate} view={this.state.view} formInputsStudent={this.state.formInputsStudent} students={this.state.students} />
