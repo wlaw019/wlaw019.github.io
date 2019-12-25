@@ -19,7 +19,7 @@ const pool = new Pool({
 // ========================
 
 router.get('/', (req, res) => {
-  pool.query("SELECT * FROM courses", (err, results) => {
+  pool.query("SELECT * FROM courses ORDER BY course, cohort", (err, results) => {
     if (err) {
       console.log(err);
     } else {
