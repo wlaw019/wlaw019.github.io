@@ -100,6 +100,21 @@ class App extends React.Component{
       }).catch(err => console.log(err))
   }
 
+
+  handleDelete = (id) => {
+    fetch(`${baseUrl}/courses/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    }).then(json => {
+        this.setState({
+          courses: this.state.courses.filter(course => course.id !== id)
+        })
+      }).catch(err => console.log(err))
+  }
+
 // ========================
 // Run fetchCourses after page  loads
 // ========================
@@ -132,7 +147,7 @@ class App extends React.Component{
 
         <h2>{this.state.view.pageTitle}</h2>
         {this.state.view.page === "home"?
-        <Courses handleView={this.handleView} courses={this.state.courses} />
+        <Courses handleView={this.handleView} handleDelete={this.handleDelete} courses={this.state.courses} />
         :<FormCourse handleView={this.handleView} handleCreate={this.handleCreate} handleUpdate={this.handleUpdate} view={this.state.view} formInputs={this.state.formInputs} />}
 
       </div>

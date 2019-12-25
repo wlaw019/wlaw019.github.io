@@ -21,7 +21,7 @@ class Courses extends React.Component{
                 <td>{course.cohort}</td>
                 <td>{new Date(course.dategraduated).toLocaleDateString("en-US")}</td>
                 <td><button onClick={() => {this.props.handleView("editCourse", course)}}>&#9998;</button></td>
-                <td><button>&#128465;</button></td>
+                <td><button onClick={() => {this.props.handleDelete(course.id)}}>&#128465;</button></td>
               </tr>
             ))
         }
