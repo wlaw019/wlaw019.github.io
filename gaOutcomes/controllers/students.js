@@ -46,13 +46,24 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   const {name, dateoffer, course_id} = req.body;
 
-  pool.query("INSERT INTO students (name, dateoffer, course_id) VALUES ($1, $2, $3)", [name, dateoffer, course_id], (err, results) => {
-    if (err) {
-      console.log(err);
-    }else {
-      res.send("Student created");
-    }
-  })
+  if (dateoffer==="") {
+    pool.query("INSERT INTO students (name, course_id) VALUES ($1, $2)", [name, course_id], (err, results) => {
+      if (err) {
+        console.log(err);
+      }else {
+        res.send("Student created");
+      }
+    })
+  } else {
+    pool.query("INSERT INTO students (name, dateoffer, course_id) VALUES ($1, $2, $3)", [name, dateoffer, course_id], (err, results) => {
+      if (err) {
+        console.log(err);
+      }else {
+        res.send("Student created");
+      }
+    })
+  }
+
 })
 
 

@@ -25,7 +25,9 @@ class Students extends React.Component{
             this.props.students.map((student) => (
               <tr className="student-row" key={student.id}>
                 <td>{student.name}</td>
-                <td>{new Date(student.dateoffer).toLocaleDateString("en-US")}</td>
+
+                {student.dateoffer===null? <td>pending</td>: <td>{new Date(student.dateoffer).toLocaleDateString("en-US")}</td>}
+
                 <td><button onClick={() => {this.props.handleView("editStudent", student)}}>&#9998;</button></td>
                 <td><button onClick={() => {this.props.handleDelete(student.id)}}>&#128465;</button></td>
               </tr>

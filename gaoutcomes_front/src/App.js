@@ -103,7 +103,7 @@ class App extends React.Component{
         formInputsStudent = {
           name: data.name,
           course_id: data.course_id,
-          dateoffer: new Date(data.dateoffer).toISOString().split('T')[0],
+          dateoffer: data.dateoffer===null? new Date().toISOString().split('T')[0] :new Date(data.dateoffer).toISOString().split('T')[0],
           id: data.id
           }
 
@@ -204,7 +204,7 @@ class App extends React.Component{
       } else if (this.state.view.page==="students") {
         this.handleStudents(this.state.formInputsStudent.course_id);
       }
-      
+
       }).catch(err => console.log(err))
   }
 
