@@ -18,7 +18,6 @@ class FormCourse extends React.Component{
 
 
   handleSubmit = (event) => {
-    console.log(this.state);
     event.preventDefault()
     if(this.props.view.page === 'addCourse') {
       this.props.handleCreate(this.state)

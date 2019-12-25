@@ -30,9 +30,9 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  const {course, cohort} = req.body;
+  const {course, cohort, dategraduated} = req.body;
 
-  pool.query("INSERT INTO courses (course, cohort, dategraduated) VALUES ($1, $2, $3)", [course, cohort], (err, results) => {
+  pool.query("INSERT INTO courses (course, cohort, dategraduated) VALUES ($1, $2, $3)", [course, cohort, dategraduated], (err, results) => {
     if (err) {
       console.log(err);
     }else {
