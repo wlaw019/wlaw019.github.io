@@ -21,6 +21,7 @@ class App extends React.Component{
     this.state = {
       courses: [],
       students: [],
+      allStudents:[],
       view:{
         page: "home",
         pageTitle: "Course Overview"
@@ -210,6 +211,7 @@ class App extends React.Component{
 
 
   handleStudents = (course_id) => {
+    this.handleAllStudents();
 
     fetch(`${baseUrl}/students`)
     .then(data=>data.json())
@@ -221,10 +223,23 @@ class App extends React.Component{
     .then(() => {
       this.handleView("students", course_id)
     })
+
+  }
+
+
+  handleAllStudents = () => {
+
+    fetch(`${baseUrl}/students`)
+    .then(data=>data.json())
+    .then(jData=> {
+      this.setState({
+        allStudents:jData
+      })
+    }).catch(err=>console.log(err))
   }
 
 // ========================
-// Run fetchCourses after page  loads
+// Run fetchCourses after page loads
 // ========================
     fetchCourses = () => {
       fetch(`${baseUrl}/courses`)
@@ -237,6 +252,7 @@ class App extends React.Component{
 
     componentDidMount(){
       this.fetchCourses()
+      this.handleAllStudents()
     }
 
 
@@ -258,7 +274,7 @@ class App extends React.Component{
 
         <h2>{this.state.view.pageTitle}</h2>
         {this.state.view.page === "home"?
-        <Courses handleView={this.handleView} handleDelete={this.handleDelete} courses={this.state.courses} handleStudents={this.handleStudents} /> : null}
+        <Courses handleView={this.handleView} handleDelete={this.handleDelete} courses={this.state.courses} handleStudents={this.handleStudents} allStudents={this.state.allStudents} /> : null}
 
         {this.state.view.page === "addCourse"||this.state.view.page === "editCourse"?
         <FormCourse handleCreate={this.handleCreate} handleUpdate={this.handleUpdate} view={this.state.view} formInputs={this.state.formInputs} />
@@ -270,8 +286,6 @@ class App extends React.Component{
         {this.state.view.page === "addStudent"||this.state.view.page === "editStudent"?
         <FormStudent handleCreate={this.handleCreate} handleUpdate={this.handleUpdate} view={this.state.view} formInputsStudent={this.state.formInputsStudent} students={this.state.students} />
         : null}
-
-
 
 
       </div>
