@@ -16,7 +16,7 @@ class Analytics extends React.Component {
                 labels: this.props.daysArrayIndex,
                 datasets: [
                     {
-                        label: "Number of Days",
+                        label: "Search Time (Days)",
                         data: this.props.daysArray,
                     }
                 ]
@@ -25,7 +25,7 @@ class Analytics extends React.Component {
               legend:{display:false},
               scales: {
                 yAxes: [{
-                  scaleLabel: {display: true, labelString: 'Number of Days'},
+                  scaleLabel: {display: true, labelString: 'Search Time (Days)'},
                   ticks: {beginAtZero: true}
                 }],
                 xAxes: [{

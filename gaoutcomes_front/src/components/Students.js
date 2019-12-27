@@ -32,7 +32,7 @@ class Students extends React.Component{
         }
 
         daysArray.push(days);
-        daysArrayIndex.push(i);
+        daysArrayIndex.push(this.props.students[i].name);
       }
 
       this.setState({
@@ -74,7 +74,7 @@ class Students extends React.Component{
             <tr>
               <th>Name</th>
               <th>Date 1st Offer</th>
-              <th>Number of Days</th>
+              <th>Search Time (Days)</th>
             </tr>
           </thead>
           <tbody>
