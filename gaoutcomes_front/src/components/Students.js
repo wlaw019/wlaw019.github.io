@@ -75,6 +75,7 @@ class Students extends React.Component{
               <th>Name</th>
               <th>Date 1st Offer</th>
               <th>Search Time (Days)</th>
+              <th colspan="2">Actions</th>
             </tr>
           </thead>
           <tbody>
