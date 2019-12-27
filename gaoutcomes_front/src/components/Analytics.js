@@ -29,7 +29,7 @@ class Analytics extends React.Component {
                   ticks: {beginAtZero: true}
                 }],
                 xAxes: [{
-                  scaleLabel: {display: true, labelString: 'Student id'}
+                  scaleLabel: {display: true, labelString: 'Student'}
                 }]
               }
             }
