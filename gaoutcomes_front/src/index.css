@@ -13,7 +13,7 @@ code {
     monospace;
 }
 
-nav{
+nav, .summary{
   display: flex;
   justify-content: space-around;
 }
@@ -31,6 +31,10 @@ table{
 
 .student-row:hover{
   background-color: lightgrey;
+}
+
+.student-row-highlight{
+  background-color: pink;
 }
 
 button:hover {

@@ -22,10 +22,10 @@ class Courses extends React.Component{
                 <td>{course.cohort}</td>
                 <td>{new Date(course.dategraduated).toLocaleDateString("en-US")}</td>
 
-                <td>{
-                  String(Math.round(this.props.allStudents.filter(student => student.course_id === course.id).filter(student => student.dateoffer !== null).length
-                  /this.props.allStudents.filter(student => student.course_id === course.id).length*100))
-                  }</td>
+                {this.props.allStudents.filter(student => student.course_id === course.id).length>0?
+                  <td>{String(Math.round(this.props.allStudents.filter(student => student.course_id === course.id).filter(student => student.dateoffer !== null).length
+                  /this.props.allStudents.filter(student => student.course_id === course.id).length*100))}</td>
+                  : <td>Add Student</td>}
 
                 <td className="table-button"><button onClick={(event) => {this.props.handleView("editCourse", course); event.stopPropagation();}}>&#9998;</button></td>
 

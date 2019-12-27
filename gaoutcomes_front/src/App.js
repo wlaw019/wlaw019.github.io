@@ -265,9 +265,9 @@ class App extends React.Component{
         </header>
         <nav>
           <h4 onClick={() => {this.handleView("home")}}>Home</h4>
-          {this.state.view.page === "home"?
+          {this.state.view.page === "home"||this.state.view.page === "addCourse"?
           <h4 onClick={() => {this.handleView("addCourse")}}>Add Course</h4> : null}
-          {this.state.view.page === "students"?
+          {this.state.view.page === "students"||this.state.view.page === "addStudent"?
           <h4 onClick={() => {this.handleView("addStudent")}}>Add Student</h4> : null}
           <h4>Analytics</h4>
         </nav>
