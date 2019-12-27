@@ -1,4 +1,5 @@
 import React from 'react';
+import Analytics from './Analytics.js'
 
 
 class Students extends React.Component{
@@ -7,7 +8,9 @@ class Students extends React.Component{
     this.state = {
       minDays: "",
       maxDays: "",
-      avgDays: ""
+      avgDays: "",
+      daysArray: "",
+      daysArrayIndex: ""
     }
   }
 
@@ -18,6 +21,7 @@ class Students extends React.Component{
     if (this.props.students.length!== 0) {
       let days = "";
       let daysArray = [];
+      let daysArrayIndex = [];
 
       for (var i = 0; i < this.props.students.length; i++) {
 
@@ -28,18 +32,21 @@ class Students extends React.Component{
         }
 
         daysArray.push(days);
+        daysArrayIndex.push(i);
       }
 
       this.setState({
         minDays: Math.min(...daysArray),
         maxDays: Math.max(...daysArray),
-        avgDays: Math.round(daysArray.reduce((a, b) => a + b)/daysArray.length)
-      })
+        avgDays: Math.round(daysArray.reduce((a, b) => a + b)/daysArray.length),
+        daysArray: daysArray,
+        daysArrayIndex: daysArrayIndex
+      }, console.log(this.state), setTimeout(() => console.log(this.state), 500))
     }
   }
 
   componentDidMount(){
-    this.getDays()
+    this.getDays();
   }
 
 
@@ -107,6 +114,8 @@ class Students extends React.Component{
         }
           </tbody>
         </table>
+        <br/>
+        <Analytics daysArray={this.state.daysArray} daysArrayIndex={this.state.daysArrayIndex}/>
       </>
     )
   }

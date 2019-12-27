@@ -53,3 +53,8 @@ td{
 .table-button{
   width: 5%;
 }
+
+.chart{
+  margin: 10px auto;
+  width: 80%;
+}
