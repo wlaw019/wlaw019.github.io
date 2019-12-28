@@ -7,10 +7,10 @@ const router = express.Router();
 
 const Pool = require("pg").Pool;
 const pool = new Pool({
-  // user: "wincylaw"
+  user: "gaoutcomes_user",
   host: "localhost",
   database: "gaoutcomes",
-  // password: "2168"
+  password: "2168",
   port: 5432
 })
 

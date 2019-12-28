@@ -1,16 +1,17 @@
-CREATE DATABASE gaoutcomes;
-
-\c gaoutcomes;
-
-DROP TABLE students;
-
--- CREATE TABLE students (id SERIAL, name VARCHAR(32), course VARCHAR(32), cohort VARCHAR(32), dateoffer timestamp);
+-- psql postgres;
 --
--- INSERT INTO students (name, course, cohort) VALUES
--- ('Meredith', 'Software Engineering Immersive', 'Avocado Toast'),
--- ('Justin', 'Software Engineering Immersive', 'Peanut Butter'),
--- ('Richard', 'Software Engineering Immersive', 'Avocado Toast'),
--- ('Wincy', 'Software Engineering Immersive', 'Avocado Toast');
+-- CREATE ROLE gaoutcomes_user WITH LOGIN PASSWORD 'password';
+-- ALTER ROLE gaoutcomes_user CREATEDB;
+--
+-- exit
+-- psql -d postgres -U gaoutcomes_user
+--
+-- CREATE DATABASE gaoutcomes;
+--
+-- \c gaoutcomes;
+--
+-- DROP TABLE students;
+
 
 CREATE TABLE students (id SERIAL, name VARCHAR(32), dateoffer timestamp, course_id INT);
 
@@ -20,7 +21,7 @@ INSERT INTO students (name, course_id) VALUES
 ('Richard', 2),
 ('Wincy', 1);
 
-DROP TABLE courses;
+
 
 CREATE TABLE courses (id SERIAL, course VARCHAR(32), cohort VARCHAR(32), dategraduated timestamp);
 

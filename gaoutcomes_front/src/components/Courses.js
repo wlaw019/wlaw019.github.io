@@ -12,7 +12,7 @@ class Courses extends React.Component{
               <th>Cohort</th>
               <th>Date Graduated</th>
               <th>Success (%)</th>
-              <th colspan="2">Actions</th>
+              <th colSpan="2">Actions</th>
             </tr>
           </thead>
           <tbody>
