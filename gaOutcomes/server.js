@@ -8,13 +8,13 @@ const cors = require("cors");
 const studentsController = require("./controllers/students.js");
 const coursesController = require("./controllers/courses.js");
 
-require("dotenv").config();
+// require("dotenv").config();
 
 // ========================
 // Port
 // ========================
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 // const PORT = process.env.PORT;
 
 // ========================
@@ -26,7 +26,8 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors({origin: 'http://localhost:3001'}));
+// app.use(cors({origin: 'http://localhost:3001'}));
+app.use(cors())
 
 app.use("/students", studentsController);
 app.use("/courses", coursesController);

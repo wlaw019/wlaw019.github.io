@@ -1,18 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const { pool } = require('../config.js');
 
 // ========================
-// Postgres connection
+// Postgres development connection w/o env file
 // ========================
 
-const Pool = require("pg").Pool;
-const pool = new Pool({
-  user: "gaoutcomes_user",
-  host: "localhost",
-  database: "gaoutcomes",
-  password: "2168",
-  port: 5432
-})
+// const Pool = require("pg").Pool;
+// const pool = new Pool({
+//   user: "gaoutcomes_user",
+//   host: "localhost",
+//   database: "gaoutcomes",
+//   password: "2168",
+//   port: 5432
+// })
 
 // ========================
 // Routes
