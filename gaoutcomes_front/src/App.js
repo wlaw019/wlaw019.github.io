@@ -7,7 +7,7 @@ import FormStudent from './components/FormStudent.js'
 // ========================
 // URL for psql database
 // ========================
-let baseURL = process.env.REACT_APP_BASEURL;
+let baseUrl = process.env.REACT_APP_BASEURL;
 
 if (process.env.NODE_ENV === 'development') {
   baseUrl = 'http://localhost:3000'
