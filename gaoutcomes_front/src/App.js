@@ -11,7 +11,7 @@ let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
   baseUrl = 'http://localhost:3000'
 } else {
-  console.log('this is for heroku');
+  baseUrl = 'https://gaoutcomes.herokuapp.com'
 }
 
 
